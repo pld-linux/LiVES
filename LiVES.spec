@@ -25,11 +25,10 @@ BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 Requires:	ImageMagick >= 5
 Requires:	SDL
-Requires:	ffmpeg
 Requires:	gdk-pixbuf
 Requires:	libjpeg
 Requires:	libtheora
-Requires:	mjpegtools
+Requires:	mjpegtools-libs
 Requires:	mplayer >= 0.90rc1
 Requires:	ogmtools
 Requires:	perl-base
