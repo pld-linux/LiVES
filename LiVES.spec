@@ -20,7 +20,7 @@ URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	gtk+2-devel
 BuildRequires:	pango-devel
 BuildRequires:	freetype-devel
-Requires:	mplayer >= 0.90rc1+
+Requires:	mplayer >= 0.90rc1
 Requires:	ImageMagick
 Requires:	perl
 Requires:	libjpeg
@@ -45,10 +45,10 @@ Summary(pl):	Wtyczki(plugins) dla LiVES
 Group:		X11/Applications/Multimedia
 
 %description plugins
-Plugins for LiVES
+Plugins for LiVES.
 
 %description plugins -l pl
-Wtyczki(plugins) dla LiVES
+Wtyczki (plugins) dla LiVES.
 
 %package themes
 Summary:	Themes for LiVES
@@ -56,10 +56,10 @@ Summary(pl):	Motywy dla LiVES
 Group:		Themes/GTK+
 
 %description themes
-Themes for LiVES
+Themes for LiVES.
 
 %description themes -l pl
-Motywy dla LiVES
+Motywy dla LiVES.
 
 %prep
 %setup -q -n %{name}-%{version}-%{_pre}
