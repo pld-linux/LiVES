@@ -16,34 +16,33 @@ Source0:	http://www.xs4all.nl/%7Esalsaman/%{_sname}/current/%{name}-%{version}-%
 Source1:	%{name}.desktop
 Patch0:		%{name}-Makefile.in-path.patch
 Patch1:		%{name}-plugins-python.patch
-URL:		http://www.xs4all.nl/~salsaman/lives/	
+URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	gtk+2-devel
 BuildRequires:	pango-devel
 BuildRequires:	freetype-devel
 Requires:	mplayer >= 0.90rc1+
-Requires:	ImageMagick 
-Requires:       perl 
+Requires:	ImageMagick
+Requires:	perl
 Requires:	libjpeg
 Requires:	gdk-pixbuf
-Requires:       %{name}-plugins = %{version}-%{release}
+Requires:	%{name}-plugins = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-
 %description
-LiVES began as the Linux Video Editing System. Since it now runs on more 
-operating systems, LiVES is a Video Editing System. It is designed to be 
-simple to use, yet powerful. It is small in size, yet it has many advanced 
-features.
+LiVES began as the Linux Video Editing System. Since it now runs on
+more operating systems, LiVES is a Video Editing System. It is
+designed to be simple to use, yet powerful. It is small in size, yet
+it has many advanced features.
 
 %description -l pl
-LiVES zaczyna³ jako Linuksowy System Edycji Video. Teraz mo¿na go ruchomiæ
-na wiêkszej ilo¶ci systemów operacyjnych, i teraz LiVES jest Systemem
-Edycji Video.
+LiVES zaczyna³ jako Linuksowy System Edycji Video. Teraz mo¿na go
+ruchomiæ na wiêkszej ilo¶ci systemów operacyjnych, i teraz LiVES jest
+Systemem Edycji Video.
 
 %package plugins
-Summary:        Plugins for LiVES
-Summary(pl):    Wtyczki(plugins) dla LiVES
-Group:          X11/Applications/Multimedia
+Summary:	Plugins for LiVES
+Summary(pl):	Wtyczki(plugins) dla LiVES
+Group:		X11/Applications/Multimedia
 
 %description plugins
 Plugins for LiVES
@@ -51,18 +50,16 @@ Plugins for LiVES
 %description plugins -l pl
 Wtyczki(plugins) dla LiVES
 
-
 %package themes
-Summary:        Themes for LiVES
-Summary(pl):    Motywy dla LiVES
-Group:          Themes/GTK+
+Summary:	Themes for LiVES
+Summary(pl):	Motywy dla LiVES
+Group:		Themes/GTK+
 
-%description themes 
+%description themes
 Themes for LiVES
 
 %description themes -l pl
 Motywy dla LiVES
-
 
 %prep
 %setup -q -n %{name}-%{version}-%{_pre}
@@ -72,7 +69,6 @@ gzip -dc %{_sname}-themes-%{version}-%{_pre}.tar.gz | tar -xf -
 %patch1 -p0
 
 %build
-
 %configure
 %{__make}
 
@@ -80,7 +76,7 @@ gzip -dc %{_sname}-themes-%{version}-%{_pre}.tar.gz | tar -xf -
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/{%{_datadir}/%{_sname},%{_desktopdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT/%{_desktopdir}
@@ -93,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS ChangeLog NEWS README 
+%doc AUTHORS BUGS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{_sname}/icons
 %{_desktopdir}/%{name}.desktop
@@ -103,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_themesdir}/camera
 %{_themesdir}/cutting_room
-%{_themesdir}/greenish 
+%{_themesdir}/greenish
 %{_themesdir}/pinks
 %{_themesdir}/sunburst
 
