@@ -16,8 +16,10 @@ Patch0:		%{name}-Makefile.in-path.patch
 Patch1:		%{name}-plugins-python.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	freetype-devel
+BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	pango-devel
+BuildRequires:	pkgconfig
 Requires:	ImageMagick
 # ???
 Requires:	gdk-pixbuf
