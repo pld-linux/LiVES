@@ -16,18 +16,15 @@ Patch0:		%{name}-Makefile.in-path.patch
 Patch1:		%{name}-plugins-python.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	SDL-devel
-BuildRequires:	automake >= 1.7
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	autoconf >= 2.57
-BuildRequires:	gettext >= 0.14.1
-BuildRequires:	freetype-devel
-BuildRequires:	gettext-devel
-BuildRequires:	gdk-pixbuf-devel
-BuildRequires:	gtk+2-devel
-BuildRequires:	libtheora-devel	
-BuildRequires:	libjpeg-devel
+BuildRequires:	gettext-devel >= 0.14.1
+BuildRequires:	gtk+2-devel >= 2.0.0
+BuildRequires:	libtheora-devel
+BuildRequires:	libvisual-devel
 BuildRequires:	mjpegtools-devel
-BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
+Requires:	%{name}-plugins = %{version}-%{release}
 Requires:	ImageMagick >= 5
 Requires:	ffmpeg
 Requires:	mplayer >= 0.90rc1
@@ -36,8 +33,6 @@ Requires:	perl-base
 Requires:	python >= 1:2.3
 Requires:	sox
 Requires:	transcode
-Requires:	%{name}-plugins = %{version}-%{release}
-BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_themesdir	%{_datadir}/%{_sname}/themes
@@ -106,8 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{_sname}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS CHANGELOG FEATURES GETTING.STARTED NEWS 
-%doc RFX OMC
+%doc AUTHORS BUGS CHANGELOG FEATURES GETTING.STARTED NEWS RFX OMC
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/%{_sname}
 %{_datadir}/%{_sname}/icons
