@@ -1,30 +1,30 @@
 
-%define 	_sname lives
-%define         _pre    pre6
-%define		_themesdir %{_datadir}/%{_sname}/themes
+%define		_sname		lives
+%define		_pre		pre6
+%define		_themesdir	%{_datadir}/%{_sname}/themes
 
 Summary:	LiVES is the Linux Video Editing System
 Summary(pl):	LiVEA jest Linuksowym Systemem Edycji Video
 Name:		LiVES
 Version:	0.9.1
-Release:	0.%{_pre}.1
-Epoch:		0
+Release:	0.%{_pre}.2
 License:	GPL v2
 Group:		X11/Applications/Multimedia
-Source0:	http://www.xs4all.nl/%7Esalsaman/%{_sname}/current/%{name}-%{version}-%{_pre}-src.tar.bz2
+Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}-%{_pre}-src.tar.bz2
 # Source0-md5:	8088d0f11b92a3792b9feb6338c11aa4
 Source1:	%{name}.desktop
 Patch0:		%{name}-Makefile.in-path.patch
 Patch1:		%{name}-plugins-python.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
+BuildRequires:	freetype-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	pango-devel
-BuildRequires:	freetype-devel
-Requires:	mplayer >= 0.90rc1
 Requires:	ImageMagick
-Requires:	perl
-Requires:	libjpeg
 Requires:	gdk-pixbuf
+Requires:	libjpeg
+Requires:	mplayer >= 0.90rc1
+Requires:	perl
+Requires:	python >= 2.3
 Requires:	%{name}-plugins = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -42,7 +42,7 @@ i mimo niewielkiego rozmiaru posiadaæ zaawansowane funkcje.
 
 %package plugins
 Summary:	Plugins for LiVES
-Summary(pl):	Wtyczki (plugins) dla LiVES
+Summary(pl):	Wtyczki dla LiVES
 Group:		X11/Applications/Multimedia
 
 %description plugins
@@ -79,8 +79,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/{%{_datadir}/%{_sname},%{_desktopdir}}
-install %{SOURCE1} $RPM_BUILD_ROOT/%{_desktopdir}
+install -d $RPM_BUILD_ROOT{%{_datadir}/%{_sname},%{_desktopdir}}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 cp -r plugins $RPM_BUILD_ROOT%{_datadir}/%{_sname}/
 cp -r themes $RPM_BUILD_ROOT%{_datadir}/%{_sname}/
 cp -r icons $RPM_BUILD_ROOT%{_datadir}/%{_sname}/
