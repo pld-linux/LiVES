@@ -84,10 +84,12 @@ cp -r plugins $RPM_BUILD_ROOT%{_datadir}/%{_sname}/
 cp -r themes $RPM_BUILD_ROOT%{_datadir}/%{_sname}/
 cp -r icons $RPM_BUILD_ROOT%{_datadir}/%{_sname}/
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
