@@ -1,15 +1,11 @@
---- LiVES-0.9.1-pre6.org/Makefile.in	2004-11-25 17:07:36.418818264 +0100
-+++ LiVES-0.9.1-pre6/Makefile.in	2004-11-25 17:13:52.379663528 +0100
-@@ -377,9 +377,9 @@
+--- lives-0.9.5-pre1.org/Makefile.in	2005-03-07 23:50:18.213084552 +0100
++++ lives-0.9.5-pre1/Makefile.in	2005-03-08 00:26:40.668300928 +0100
+@@ -708,7 +708,7 @@
  
- 
- install-exec-am:
--		cp -pf smogrify $(bindir)
--		cp -pf build-lives-rfx-plugin* $(bindir)
--		ln -fs $(bindir)/lives-exe $(bindir)/lives
-+		cp -pf smogrify $(DESTDIR)/$(bindir)
-+		cp -pf build-lives-rfx-plugin* $(DESTDIR)/$(bindir)
-+		ln -fs $(bindir)/lives-exe $(DESTDIR)/$(bindir)/lives
- 
- install-data-local:
- 
+ install-exec-local:
+ 	rm -rf $(DESTDIR)/$(bindir)/lives
+-	$(LN_S) $(DESTDIR)/$(bindir)/lives-exe $(DESTDIR)/$(bindir)/lives
++	$(LN_S) $(bindir)/lives-exe ${DESTDIR}/$(bindir)/lives
+ 	cp -f $(srcdir)/smogrify $(DESTDIR)/$(bindir) && chmod +rx $(DESTDIR)/$(bindir)/smogrify
+ 	cp -f $(srcdir)/midistart $(DESTDIR)/$(bindir) && chmod +rx $(DESTDIR)/$(bindir)/midistart
+ 	cp -f $(srcdir)/midistop $(DESTDIR)/$(bindir) && chmod +rx $(DESTDIR)/$(bindir)/midistop

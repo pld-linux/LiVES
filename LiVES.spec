@@ -1,16 +1,16 @@
 
 %define		_sname		lives
-%define		_pre		pre6
+%define		_pre		pre1
 
 Summary:	LiVES - the Linux Video Editing System
 Summary(pl):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
-Version:	0.9.1
-Release:	0.%{_pre}.2
+Version:	0.9.5
+Release:	0.%{_pre}.1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
-Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}-%{_pre}-src.tar.bz2
-# Source0-md5:	8088d0f11b92a3792b9feb6338c11aa4
+Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}-%{_pre}.tar.bz2
+# Source0-md5:	cada2088fb0b5cc029b0b6369632bf6a
 Source1:	%{name}.desktop
 Patch0:		%{name}-Makefile.in-path.patch
 Patch1:		%{name}-plugins-python.patch
@@ -21,7 +21,6 @@ BuildRequires:	gtk+2-devel
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 Requires:	ImageMagick
-# ???
 Requires:	gdk-pixbuf
 Requires:	libjpeg
 Requires:	mplayer >= 0.90rc1
@@ -69,11 +68,9 @@ Themes for LiVES.
 Motywy dla LiVES.
 
 %prep
-%setup -q -n %{name}-%{version}-%{_pre}
-gzip -dc %{_sname}-plugins-%{version}-%{_pre}.tar.gz | tar -xf -
-gzip -dc %{_sname}-themes-%{version}-%{_pre}.tar.gz | tar -xf -
+%setup -q -n %{_sname}-%{version}-%{_pre}
 %patch0 -p1
-%patch1 -p0
+%patch1 -p1
 
 %build
 %configure
@@ -85,20 +82,20 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_datadir}/%{_sname},%{_desktopdir}}
+install -d $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
-cp -r plugins $RPM_BUILD_ROOT%{_datadir}/%{_sname}
-cp -r themes $RPM_BUILD_ROOT%{_datadir}/%{_sname}
-cp -r icons $RPM_BUILD_ROOT%{_datadir}/%{_sname}
+mv $RPM_BUILD_ROOT%{_docdir}/%{_sname}-%{version}-%{_pre} \
+	$RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
-%find_lang %{name}
+%find_lang %{_sname}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files -f %{_sname}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS ChangeLog NEWS README
+%doc AUTHORS BUGS CHANGELOG FEATURES GETTING.STARTED NEWS 
+%doc RFX OMC
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/%{_sname}
 %{_datadir}/%{_sname}/icons
@@ -113,6 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_themesdir}/greenish
 %{_themesdir}/pinks
 %{_themesdir}/sunburst
+%{_themesdir}/editor
 
 %files plugins
 %defattr(644,root,root,755)
