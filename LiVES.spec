@@ -15,17 +15,27 @@ Source1:	%{name}.desktop
 Patch0:		%{name}-Makefile.in-path.patch
 Patch1:		%{name}-plugins-python.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
+BuildRequires:	automake >= 1.7
+BuildRequires:	autoconf >= 2.57
+BuildRequires:	gettext >= 0.14.1
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
-Requires:	ImageMagick
+Requires:	ImageMagick >= 5
+Requires:	SDL
+Requires:	ffmpeg
 Requires:	gdk-pixbuf
 Requires:	libjpeg
+Requires:	libtheora
+Requires:	mjpegtools
 Requires:	mplayer >= 0.90rc1
+Requires:	ogmtools
 Requires:	perl-base
 Requires:	python >= 1:2.3
+Requires:	sox
+Requires:	transcode
 Requires:	%{name}-plugins = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
