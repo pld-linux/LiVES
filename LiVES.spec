@@ -24,7 +24,7 @@ Requires:	gdk-pixbuf
 Requires:	libjpeg
 Requires:	mplayer >= 0.90rc1
 Requires:	perl
-Requires:	python >= 2.3
+Requires:	python >= 1:2.3
 Requires:	%{name}-plugins = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
