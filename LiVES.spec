@@ -35,13 +35,14 @@ designed to be simple to use, yet powerful. It is small in size, yet
 it has many advanced features.
 
 %description -l pl
-LiVES zaczyna³ jako Linuksowy System Edycji Video. Teraz mo¿na go
-ruchomiæ na wiêkszej ilo¶ci systemów operacyjnych, i teraz LiVES jest
-Systemem Edycji Video.
+LiVES zaczyna³ jako Linuksowy System Edycji Video. Obecnie mo¿na
+równie¿ uruchomiæ go na wiêkszej ilo¶ci systemów operacyjnych. 
+Zaprojektowany zosta³ tak, by byæ zarówno prostym w u¿yciu jak
+i mimo niewielkiego rozmiaru posiadaæ zaawansowane funkcje.
 
 %package plugins
 Summary:	Plugins for LiVES
-Summary(pl):	Wtyczki(plugins) dla LiVES
+Summary(pl):	Wtyczki (plugins) dla LiVES
 Group:		X11/Applications/Multimedia
 
 %description plugins
