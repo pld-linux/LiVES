@@ -1,10 +1,9 @@
 
 %define		_sname		lives
 %define		_pre		pre6
-%define		_themesdir	%{_datadir}/%{_sname}/themes
 
-Summary:	LiVES is the Linux Video Editing System
-Summary(pl):	LiVEA jest Linuksowym Systemem Edycji Video
+Summary:	LiVES - the Linux Video Editing System
+Summary(pl):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
 Version:	0.9.1
 Release:	0.%{_pre}.2
@@ -20,13 +19,16 @@ BuildRequires:	freetype-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	pango-devel
 Requires:	ImageMagick
+# ???
 Requires:	gdk-pixbuf
 Requires:	libjpeg
 Requires:	mplayer >= 0.90rc1
-Requires:	perl
+Requires:	perl-base
 Requires:	python >= 1:2.3
 Requires:	%{name}-plugins = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_themesdir	%{_datadir}/%{_sname}/themes
 
 %description
 LiVES began as the Linux Video Editing System. Since it now runs on
@@ -36,7 +38,7 @@ it has many advanced features.
 
 %description -l pl
 LiVES zaczyna³ jako Linuksowy System Edycji Video. Obecnie mo¿na
-równie¿ uruchomiæ go na wiêkszej ilo¶ci systemów operacyjnych. 
+równie¿ uruchomiæ go na wiêkszej liczbie systemów operacyjnych.
 Zaprojektowany zosta³ tak, by byæ zarówno prostym w u¿yciu jak
 i mimo niewielkiego rozmiaru posiadaæ zaawansowane funkcje.
 
@@ -44,6 +46,7 @@ i mimo niewielkiego rozmiaru posiadaæ zaawansowane funkcje.
 Summary:	Plugins for LiVES
 Summary(pl):	Wtyczki dla LiVES
 Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}-%{release}
 
 %description plugins
 Plugins for LiVES.
@@ -55,6 +58,7 @@ Wtyczki (plugins) dla LiVES.
 Summary:	Themes for LiVES
 Summary(pl):	Motywy dla LiVES
 Group:		Themes/GTK+
+Requires:	%{name} = %{version}-%{release}
 
 %description themes
 Themes for LiVES.
@@ -81,9 +85,9 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_datadir}/%{_sname},%{_desktopdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
-cp -r plugins $RPM_BUILD_ROOT%{_datadir}/%{_sname}/
-cp -r themes $RPM_BUILD_ROOT%{_datadir}/%{_sname}/
-cp -r icons $RPM_BUILD_ROOT%{_datadir}/%{_sname}/
+cp -r plugins $RPM_BUILD_ROOT%{_datadir}/%{_sname}
+cp -r themes $RPM_BUILD_ROOT%{_datadir}/%{_sname}
+cp -r icons $RPM_BUILD_ROOT%{_datadir}/%{_sname}
 
 %find_lang %{name}
 
@@ -94,8 +98,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
+%dir %{_datadir}/%{_sname}
 %{_datadir}/%{_sname}/icons
 %{_desktopdir}/%{name}.desktop
+%dir %{_themesdir}
 %{_themesdir}/default
 
 %files themes
