@@ -1,0 +1,18 @@
+diff -urN plugins.org/encoders/multi_encoder plugins/encoders/multi_encoder
+--- plugins.org/encoders/multi_encoder	2004-11-25 19:01:16.138063352 +0100
++++ plugins/encoders/multi_encoder	2004-11-25 19:01:27.427347120 +0100
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python2.3
++#!/usr/bin/python
+ 
+ """
+ multi_encoder
+diff -urN plugins.org/encoders/multi_encoder~ plugins/encoders/multi_encoder~
+--- plugins.org/encoders/multi_encoder~	2004-11-25 19:01:16.138063352 +0100
++++ plugins/encoders/multi_encoder~	2004-11-25 19:01:32.389592744 +0100
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python2.3
++#!/usr/bin/python
+ 
+ """
+ multi_encoder

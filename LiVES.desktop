@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=LiVES
+Comment=Linux Video Encoding System
+Comment[pl]=Edytor plików video
+Exec=lives
+Terminal=false
+Type=Application
+Categories=AudioVideo;
+Encoding=UTF-8
+# vi: encoding=utf-8

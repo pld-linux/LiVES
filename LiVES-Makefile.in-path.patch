@@ -1,0 +1,15 @@
+--- LiVES-0.9.1-pre6.org/Makefile.in	2004-11-25 17:07:36.418818264 +0100
++++ LiVES-0.9.1-pre6/Makefile.in	2004-11-25 17:13:52.379663528 +0100
+@@ -377,9 +377,9 @@
+ 
+ 
+ install-exec-am:
+-		cp -pf smogrify $(bindir)
+-		cp -pf build-lives-rfx-plugin* $(bindir)
+-		ln -fs $(bindir)/lives-exe $(bindir)/lives
++		cp -pf smogrify $(DESTDIR)/$(bindir)
++		cp -pf build-lives-rfx-plugin* $(DESTDIR)/$(bindir)
++		ln -fs $(bindir)/lives-exe $(DESTDIR)/$(bindir)/lives
+ 
+ install-data-local:
+ 
