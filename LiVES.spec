@@ -15,20 +15,21 @@ Source1:	%{name}.desktop
 Patch0:		%{name}-Makefile.in-path.patch
 Patch1:		%{name}-plugins-python.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
+BuildRequires:	SDL-devel
 BuildRequires:	automake >= 1.7
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	gettext >= 0.14.1
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
+BuildRequires:	gdk-pixbuf-devel
 BuildRequires:	gtk+2-devel
+BuildRequires:	libtheora-devel	
+BuildRequires:	libjpeg-devel
+BuildRequires:	mjpegtools-devel
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 Requires:	ImageMagick >= 5
-Requires:	SDL
-Requires:	gdk-pixbuf
-Requires:	libjpeg
-Requires:	libtheora
-Requires:	mjpegtools-libs
+Requires:	ffmpeg
 Requires:	mplayer >= 0.90rc1
 Requires:	ogmtools
 Requires:	perl-base
@@ -36,6 +37,7 @@ Requires:	python >= 1:2.3
 Requires:	sox
 Requires:	transcode
 Requires:	%{name}-plugins = %{version}-%{release}
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_themesdir	%{_datadir}/%{_sname}/themes
@@ -83,7 +85,8 @@ Motywy dla LiVES.
 
 %build
 %configure
-%{__make}
+%{__make} \
+	CFLAGS="%{rpmcflags} -fPIC"
 
 %install
 rm -rf $RPM_BUILD_ROOT
