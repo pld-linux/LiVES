@@ -1,6 +1,6 @@
 
 %define		_sname		lives
-%define		_pre		pre1
+%define		_pre		pre3
 
 Summary:	LiVES - the Linux Video Editing System
 Summary(pl):	LiVES - Linuksowy System Edycji Video
@@ -10,9 +10,9 @@ Release:	0.%{_pre}.1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}-%{_pre}.tar.bz2
-# Source0-md5:	cada2088fb0b5cc029b0b6369632bf6a
+# Source0-md5:	722f848a002084bb8f520a85ea5be756
 Source1:	%{name}.desktop
-Patch0:		%{name}-Makefile.in-path.patch
+Patch0:		%{name}-Makefile.am-path.patch
 Patch1:		%{name}-plugins-python.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	SDL-devel
@@ -76,20 +76,26 @@ Motywy dla LiVES.
 %prep
 %setup -q -n %{_sname}-%{version}-%{_pre}
 %patch0 -p1
-%patch1 -p1
 
 %build
+%{__aclocal} -I m4
+%{__autoconf}
+%{__automake}
 %configure
 %{__make} \
 	CFLAGS="%{rpmcflags} -fPIC"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_desktopdir}
+install -d $RPM_BUILD_ROOT%{_datadir}/lives/plugins/effects/rendered
+for i in lives-plugins/plugins/effects/RFXscripts/*.script ; do
+	./build-lives-rfx-plugin $i $RPM_BUILD_ROOT%{_datadir}/lives/plugins/effects/rendered
+done
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 mv $RPM_BUILD_ROOT%{_docdir}/%{_sname}-%{version}-%{_pre} \
 	$RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
