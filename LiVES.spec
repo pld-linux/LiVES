@@ -13,7 +13,6 @@ Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}-%{_pr
 # Source0-md5:	722f848a002084bb8f520a85ea5be756
 Source1:	%{name}.desktop
 Patch0:		%{name}-Makefile.am-path.patch
-Patch1:		%{name}-plugins-python.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	SDL-devel
 BuildRequires:	automake >= 1:1.7
