@@ -20,6 +20,7 @@ BuildRequires:	autoconf >= 2.57
 BuildRequires:	gettext-devel >= 0.14.1
 BuildRequires:	gtk+2-devel >= 2.0.0
 BuildRequires:	libtheora-devel
+BuildRequires:	libtool
 BuildRequires:	libvisual-devel
 BuildRequires:	mjpegtools-devel
 BuildRequires:	pkgconfig
