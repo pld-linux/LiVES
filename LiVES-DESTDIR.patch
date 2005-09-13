@@ -1,0 +1,12 @@
+diff -aurN lives-0.9.5-pre4.orig/lives-plugins/plugins/effects/RFXscripts/Makefile.am lives-0.9.5-pre4/lives-plugins/plugins/effects/RFXscripts/Makefile.am
+--- lives-0.9.5-pre4.orig/lives-plugins/plugins/effects/RFXscripts/Makefile.am	2005-06-19 13:37:31.000000000 +0200
++++ lives-0.9.5-pre4/lives-plugins/plugins/effects/RFXscripts/Makefile.am	2005-09-13 14:47:26.000000000 +0200
+@@ -4,7 +4,7 @@
+ 
+ install-exec-am: 
+ 	$(top_srcdir)/mkinstalldirs \
+-	$(datadir)/$(PACKAGE)/plugins/effects/rendered
++	$(DESTDIR)$(datadir)/$(PACKAGE)/plugins/effects/rendered
+ 
+ RFXscriptsdir = $(datadir)/$(PACKAGE)/plugins/effects/RFXscripts
+ RFXscripts_DATA = *.script
