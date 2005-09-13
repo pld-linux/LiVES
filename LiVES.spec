@@ -1,6 +1,6 @@
 
 %define		_sname		lives
-%define		_pre		pre3
+%define		_pre		pre4
 
 Summary:	LiVES - the Linux Video Editing System
 Summary(pl):	LiVES - Linuksowy System Edycji Video
@@ -10,9 +10,10 @@ Release:	0.%{_pre}.1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}-%{_pre}.tar.bz2
-# Source0-md5:	722f848a002084bb8f520a85ea5be756
+# Source0-md5:	009900a10fc2ce8221cdce4287f3ab42
 Source1:	%{name}.desktop
 Patch0:		%{name}-Makefile.am-path.patch
+Patch1:		%{name}-DESTDIR.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	SDL-devel
 BuildRequires:	automake >= 1:1.7
@@ -76,6 +77,7 @@ Motywy dla LiVES.
 %prep
 %setup -q -n %{_sname}-%{version}-%{_pre}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__aclocal} -I m4
