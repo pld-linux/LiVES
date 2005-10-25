@@ -1,4 +1,24 @@
 
+# TODO
+# - fix erroneous deps:
+# There are more than one package which provide "SDL":
+# a) LiVES-plugins-0.9.5-0.pre3.1
+# b) SDL-1.2.9-1
+# $ rpm -qp dists/ac/PLD/i686/PLD/RPMS/LiVES-plugins-0.9.5-0.pre3.1.i686.rpm --provides
+# SDL
+# alien_overlay
+# fg_bg_removal
+# libvis
+# mirrors
+# negate
+# noise
+# posterise
+# simple_blend
+# xeffect
+# yuv4mpeg_stream
+# LiVES-plugins = 0:0.9.5-0.pre3.1
+
+
 %define		_sname		lives
 %define		_pre		pre4
 
