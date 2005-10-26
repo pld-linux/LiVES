@@ -1,23 +1,6 @@
 
 # TODO
-# - fix erroneous deps:
-# There are more than one package which provide "SDL":
-# a) LiVES-plugins-0.9.5-0.pre3.1
-# b) SDL-1.2.9-1
-# $ rpm -qp dists/ac/PLD/i686/PLD/RPMS/LiVES-plugins-0.9.5-0.pre3.1.i686.rpm --provides
-# SDL
-# alien_overlay
-# fg_bg_removal
-# libvis
-# mirrors
-# negate
-# noise
-# posterise
-# simple_blend
-# xeffect
-# yuv4mpeg_stream
-# LiVES-plugins = 0:0.9.5-0.pre3.1
-
+# - some platform-independent left in %{_libdir}
 
 %define		_sname		lives
 %define		_pre		pre4
@@ -45,6 +28,7 @@ BuildRequires:	libtool
 BuildRequires:	libvisual-devel
 BuildRequires:	mjpegtools-devel
 BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 Requires:	%{name}-plugins = %{version}-%{release}
 Requires:	ImageMagick >= 5
 Requires:	ffmpeg
@@ -56,7 +40,11 @@ Requires:	sox
 Requires:	transcode
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+# platform-dependent plugins in %{_datadir}
+%define		_datadir	%{_libdir}
 %define		_themesdir	%{_datadir}/%{_sname}/themes
+# shared objects without .so (e.g. SDL), which we don't want to provide
+%define		_noautoprovfiles	^%{_datadir}/%{_sname}/.*
 
 %description
 LiVES began as the Linux Video Editing System. Since it now runs on
@@ -99,11 +87,16 @@ Motywy dla LiVES.
 %patch0 -p1
 %patch1 -p1
 
+# wrrr
+sed -i -e 's,/share/,/%{_lib}/,' po/pxgettext po/make_rfx_builtin_list.pl
+
 %build
 %{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
-%configure
+# hack: DATADIRNAME defined too late in configure
+%configure \
+	DATADIRNAME=share
 %{__make} \
 	CFLAGS="%{rpmcflags} -fPIC"
 
@@ -115,8 +108,10 @@ for i in lives-plugins/plugins/effects/RFXscripts/*.script ; do
 	./build-lives-rfx-plugin $i $RPM_BUILD_ROOT%{_datadir}/lives/plugins/effects/rendered
 done
 
+# hack: override localedir because of redefined datadir
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	localedir=%{_prefix}/share/locale
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 mv $RPM_BUILD_ROOT%{_docdir}/%{_sname}-%{version}-%{_pre} \
