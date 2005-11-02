@@ -10,3 +10,14 @@ diff -aurN lives-0.9.5-pre4.orig/lives-plugins/plugins/effects/RFXscripts/Makefi
  
  RFXscriptsdir = $(datadir)/$(PACKAGE)/plugins/effects/RFXscripts
  RFXscripts_DATA = *.script
+--- lives-0.9.5-pre4.orig/lives-plugins/icons/Makefile.am	2005-11-02 02:33:59.000000000 +0100
++++ lives-0.9.5-pre4/lives-plugins/icons/Makefile.am	2005-11-02 02:33:59.000000000 +0100
+@@ -1,7 +1,7 @@
+ ## Process this with automake to create Makefile.in
+ 
+ install-exec-am:
+-	/bin/rm -rf $(datadir)/$(PACKAGE)/*
++	/bin/rm -rf $(DESTDIR)$(datadir)/$(PACKAGE)/*
+ 
+ iconsdir = $(datadir)/$(PACKAGE)/icons
+ icons_DATA = \
