@@ -9,7 +9,7 @@ Summary:	LiVES - the Linux Video Editing System
 Summary(pl):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
 Version:	0.9.5
-Release:	0.%{_pre}.3
+Release:	0.%{_pre}.4
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}-%{_pre}.tar.bz2
@@ -40,6 +40,8 @@ Requires:	sox
 Requires:	transcode
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+# workaround for the next change
+%define		_localedir	%{_usr}/share/locale
 # platform-dependent plugins in %{_datadir}
 %define		_datadir	%{_libdir}
 %define		_themesdir	%{_datadir}/%{_sname}/themes
@@ -111,14 +113,14 @@ done
 # hack: override localedir because of redefined datadir
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	localedir=%{_prefix}/share/locale
+	localedir=%{_localedir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 mv $RPM_BUILD_ROOT%{_docdir}/%{_sname}-%{version}-%{_pre} \
 	$RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
-mv -f $RPM_BUILD_ROOT%{_datadir}/locale/{cz,cs}
-mv -f $RPM_BUILD_ROOT%{_datadir}/locale/nl{_NL,}
+mv -f $RPM_BUILD_ROOT%{_localedir}/{cz,cs}
+mv -f $RPM_BUILD_ROOT%{_localedir}/nl{_NL,}
 
 %find_lang %{_sname}
 
