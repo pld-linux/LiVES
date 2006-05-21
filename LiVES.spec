@@ -3,17 +3,16 @@
 # - some platform-independent left in %{_libdir}
 
 %define		_sname		lives
-%define		_pre		pre4
 
 Summary:	LiVES - the Linux Video Editing System
 Summary(pl):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
 Version:	0.9.5
-Release:	0.%{_pre}.4
+Release:	1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
-Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}-%{_pre}.tar.bz2
-# Source0-md5:	009900a10fc2ce8221cdce4287f3ab42
+Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}.tar.bz2
+# Source0-md5:	256ff1389aa1d0051394272937611753
 Source1:	%{name}.desktop
 Patch0:		%{name}-Makefile.am-path.patch
 Patch1:		%{name}-DESTDIR.patch
@@ -85,9 +84,9 @@ Themes for LiVES.
 Motywy dla LiVES.
 
 %prep
-%setup -q -n %{_sname}-%{version}-%{_pre}
+%setup -qn %{_sname}-%{version}
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 
 # wrrr
 sed -i -e 's,/share/,/%{_lib}/,' po/pxgettext po/make_rfx_builtin_list.pl
@@ -116,7 +115,7 @@ done
 	localedir=%{_localedir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
-mv $RPM_BUILD_ROOT%{_docdir}/%{_sname}-%{version}-%{_pre} \
+mv $RPM_BUILD_ROOT%{_docdir}/%{_sname}-%{version} \
 	$RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
 mv -f $RPM_BUILD_ROOT%{_localedir}/{cz,cs}
