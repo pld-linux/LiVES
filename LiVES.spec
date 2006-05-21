@@ -15,7 +15,6 @@ Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}.tar.b
 # Source0-md5:	256ff1389aa1d0051394272937611753
 Source1:	%{name}.desktop
 Patch0:		%{name}-Makefile.am-path.patch
-Patch1:		%{name}-DESTDIR.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	SDL-devel
 BuildRequires:	automake >= 1:1.7
@@ -86,7 +85,6 @@ Motywy dla LiVES.
 %prep
 %setup -qn %{_sname}-%{version}
 %patch0 -p1
-#%patch1 -p1
 
 # wrrr
 sed -i -e 's,/share/,/%{_lib}/,' po/pxgettext po/make_rfx_builtin_list.pl
