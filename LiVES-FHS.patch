@@ -1,0 +1,42 @@
+diff -ur lives-0.9.6-o/po/make_rfx_builtin_list.pl lives-0.9.6/po/make_rfx_builtin_list.pl
+--- lives-0.9.6-o/po/make_rfx_builtin_list.pl	2006-01-28 13:58:18.000000000 -0700
++++ lives-0.9.6/po/make_rfx_builtin_list.pl	2006-08-16 13:10:21.000000000 -0600
+@@ -3,7 +3,7 @@
+ # released under the GPL 2
+ # see file COPYING or www.gnu.org for details
+ 
+-$builtin_dir.="$ARGV[0]/$ARGV[1]/share/lives/plugins/effects/RFXscripts/";
++$builtin_dir.="$ARGV[0]/$ARGV[1]/lib/lives/plugins/effects/RFXscripts/";
+ print "    adding script files from $builtin_dir\n";
+ 
+ open OUT,"> POTFILES_PLUGINS";
+diff -ur lives-0.9.6-o/po/pxgettext lives-0.9.6/po/pxgettext
+--- lives-0.9.6-o/po/pxgettext	2006-01-28 13:58:19.000000000 -0700
++++ lives-0.9.6/po/pxgettext	2006-08-16 13:10:21.000000000 -0600
+@@ -33,7 +33,7 @@
+     }
+ 
+     $e = "msgid \"$plugin_name\"";
+-    $fileposition = "#: $prefix/share/lives/plugins/effects/rendered/$basename:0\n";
++    $fileposition = "#: $prefix/lib/lives/plugins/effects/rendered/$basename:0\n";
+     unless (&exists($e)) {
+       $e.="\nmsgstr \"\"\n";
+       push @{$entry{$e}}, $fileposition;              
+diff -ur lives-0.9.6-o/src/main.h lives-0.9.6/src/main.h
+--- lives-0.9.6-o/src/main.h	2006-07-20 19:06:58.000000000 -0600
++++ lives-0.9.6/src/main.h	2006-08-16 13:11:07.000000000 -0600
+@@ -81,10 +81,10 @@
+ 
+ #define DOC_DIR "/share/doc/lives-"
+ 
+-#define THEME_DIR "/share/lives/themes/"
+-#define PLUGIN_DIR "/share/lives/plugins/"
+-#define ICON_DIR "/share/lives/icons/"
+-#define DATA_DIR "/share/lives/"
++#define THEME_DIR "/lib/lives/themes/"
++#define PLUGIN_DIR "/lib/lives/plugins/"
++#define ICON_DIR "/lib/lives/icons/"
++#define DATA_DIR "/lib/lives/"
+ #define LIVES_CONFIG_DIR ".lives-dir"
+ 
+ // insert methods
