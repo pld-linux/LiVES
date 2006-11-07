@@ -27,6 +27,7 @@ BuildRequires:	libvisual-devel
 BuildRequires:	mjpegtools-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
+BuildRequires:	xorg-util-imake
 Requires:	%{name}-plugins = %{version}-%{release}
 Requires:	ImageMagick >= 5
 Requires:	ffmpeg
