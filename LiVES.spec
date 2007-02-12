@@ -5,7 +5,7 @@
 %define		_sname		lives
 
 Summary:	LiVES - the Linux Video Editing System
-Summary(pl.UTF-8):   LiVES - Linuksowy System Edycji Video
+Summary(pl.UTF-8):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
 Version:	0.9.6
 Release:	1
@@ -61,7 +61,7 @@ i mimo niewielkiego rozmiaru posiadać zaawansowane funkcje.
 
 %package plugins
 Summary:	Plugins for LiVES
-Summary(pl.UTF-8):   Wtyczki dla LiVES
+Summary(pl.UTF-8):	Wtyczki dla LiVES
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}-%{release}
 
@@ -73,7 +73,7 @@ Wtyczki (plugins) dla LiVES.
 
 %package themes
 Summary:	Themes for LiVES
-Summary(pl.UTF-8):   Motywy dla LiVES
+Summary(pl.UTF-8):	Motywy dla LiVES
 Group:		Themes/GTK+
 Requires:	%{name} = %{version}-%{release}
 
