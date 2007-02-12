@@ -5,7 +5,7 @@
 %define		_sname		lives
 
 Summary:	LiVES - the Linux Video Editing System
-Summary(pl):	LiVES - Linuksowy System Edycji Video
+Summary(pl.UTF-8):   LiVES - Linuksowy System Edycji Video
 Name:		LiVES
 Version:	0.9.6
 Release:	1
@@ -53,34 +53,34 @@ more operating systems, LiVES is a Video Editing System. It is
 designed to be simple to use, yet powerful. It is small in size, yet
 it has many advanced features.
 
-%description -l pl
-LiVES zaczyna³ jako Linuksowy System Edycji Video. Obecnie mo¿na
-równie¿ uruchomiæ go na wiêkszej liczbie systemów operacyjnych.
-Zaprojektowany zosta³ tak, by byæ zarówno prostym w u¿yciu jak
-i mimo niewielkiego rozmiaru posiadaæ zaawansowane funkcje.
+%description -l pl.UTF-8
+LiVES zaczynaÅ‚ jako Linuksowy System Edycji Video. Obecnie moÅ¼na
+rÃ³wnieÅ¼ uruchomiÄ‡ go na wiÄ™kszej liczbie systemÃ³w operacyjnych.
+Zaprojektowany zostaÅ‚ tak, by byÄ‡ zarÃ³wno prostym w uÅ¼yciu jak
+i mimo niewielkiego rozmiaru posiadaÄ‡ zaawansowane funkcje.
 
 %package plugins
 Summary:	Plugins for LiVES
-Summary(pl):	Wtyczki dla LiVES
+Summary(pl.UTF-8):   Wtyczki dla LiVES
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}-%{release}
 
 %description plugins
 Plugins for LiVES.
 
-%description plugins -l pl
+%description plugins -l pl.UTF-8
 Wtyczki (plugins) dla LiVES.
 
 %package themes
 Summary:	Themes for LiVES
-Summary(pl):	Motywy dla LiVES
+Summary(pl.UTF-8):   Motywy dla LiVES
 Group:		Themes/GTK+
 Requires:	%{name} = %{version}-%{release}
 
 %description themes
 Themes for LiVES.
 
-%description themes -l pl
+%description themes -l pl.UTF-8
 Motywy dla LiVES.
 
 %prep
