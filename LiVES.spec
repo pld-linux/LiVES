@@ -7,14 +7,14 @@
 Summary:	LiVES - the Linux Video Editing System
 Summary(pl):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
-Version:	0.9.5
+Version:	0.9.6
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}.tar.bz2
-# Source0-md5:	256ff1389aa1d0051394272937611753
+# Source0-md5:	71bc3a29d0d37a8ca88370a3499741d4
 Source1:	%{name}.desktop
-Patch0:		%{name}-Makefile.am-path.patch
+Patch0:		%{name}-FHS.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	SDL-devel
 BuildRequires:	automake >= 1:1.7
@@ -130,6 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/%{_sname}
 %{_datadir}/%{_sname}/icons
+%{_datadir}/%{_sname}/default.keymap
 %{_desktopdir}/%{name}.desktop
 %dir %{_themesdir}
 %{_themesdir}/default
