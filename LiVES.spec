@@ -1,6 +1,7 @@
 
 # TODO
 # - some platform-independent left in %{_libdir}
+# - fix build with automake 1.10
 
 %define		_sname		lives
 
@@ -17,8 +18,8 @@ Source1:	%{name}.desktop
 Patch0:		%{name}-FHS.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	SDL-devel
-BuildRequires:	automake >= 1:1.7
 BuildRequires:	autoconf >= 2.57
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	gettext-devel >= 0.14.1
 BuildRequires:	gtk+2-devel >= 2.0.0
 BuildRequires:	libtheora-devel
