@@ -17,8 +17,8 @@ Source1:	%{name}.desktop
 Patch0:		%{name}-FHS.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	SDL-devel
-BuildRequires:	automake >= 1:1.7
 BuildRequires:	autoconf >= 2.57
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	gettext-devel >= 0.14.1
 BuildRequires:	gtk+2-devel >= 2.0.0
 BuildRequires:	libtheora-devel
@@ -56,8 +56,8 @@ it has many advanced features.
 %description -l pl.UTF-8
 LiVES zaczynał jako Linuksowy System Edycji Video. Obecnie można
 również uruchomić go na większej liczbie systemów operacyjnych.
-Zaprojektowany został tak, by być zarówno prostym w użyciu jak
-i mimo niewielkiego rozmiaru posiadać zaawansowane funkcje.
+Zaprojektowany został tak, by być zarówno prostym w użyciu jak i mimo
+niewielkiego rozmiaru posiadać zaawansowane funkcje.
 
 %package plugins
 Summary:	Plugins for LiVES
@@ -131,6 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/%{_sname}
 %{_datadir}/%{_sname}/icons
+%{_datadir}/%{_sname}/default.keymap
 %{_desktopdir}/%{name}.desktop
 %dir %{_themesdir}
 %{_themesdir}/default
