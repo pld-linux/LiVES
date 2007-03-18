@@ -129,7 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{_sname}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS CHANGELOG FEATURES GETTING.STARTED NEWS RFX OMC
+%doc AUTHORS BUGS ChangeLog FEATURES GETTING.STARTED NEWS RFX OMC
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/%{_sname}
 %{_datadir}/%{_sname}/icons
