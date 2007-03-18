@@ -120,6 +120,7 @@ mv $RPM_BUILD_ROOT%{_docdir}/%{_sname}-%{version} \
 	$RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
 mv -f $RPM_BUILD_ROOT%{_localedir}/{cz,cs}
+mv -f $RPM_BUILD_ROOT%{_localedir}/de{_DE,}
 mv -f $RPM_BUILD_ROOT%{_localedir}/nl{_NL,}
 
 %find_lang %{_sname}
