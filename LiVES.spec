@@ -1,5 +1,5 @@
-
 # TODO
+# - unfortunately it crashes in weed_plugin_info_init (alien_overlay.wo)
 # - some platform-independent left in %{_libdir}
 
 %define		_sname		lives
@@ -8,7 +8,7 @@ Summary:	LiVES - the Linux Video Editing System
 Summary(pl.UTF-8):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
 Version:	0.9.8.3
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}.tar.bz2
