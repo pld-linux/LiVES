@@ -23,7 +23,7 @@
 -LDFLAGS_SDL = @SDL_LIBS@
 +SDL_progs = SDLp
 +SDLp_SOURCES =  SDL.c
-+SDLp_CFLAGS = $(shared_cflags) @GTK_CFLAGS@  @SDL_CFLAGS@ -g -Wall -c
++SDLp_CFLAGS = $(shared_cflags) @GTK_CFLAGS@  @SDL_CFLAGS@ -g -Wall
 +SDLp_LDFLAGS = $(shared_ldflags) @GTK_LIBS@ @SDL_LIBS@
  
  else
