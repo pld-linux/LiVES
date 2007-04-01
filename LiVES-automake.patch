@@ -1,0 +1,50 @@
+--- lives-0.9.8.3/lives-plugins/weed-plugins/Makefile.am	2007-02-08 16:19:12.000000000 +0000
++++ LiVES-wp-Makefile.am	2007-03-17 14:55:47.000000000 +0000
+@@ -20,8 +20,8 @@
+ libvis_PROGRAMS = libvis.wo
+ libvisdir = $(fxdir)
+ 
+-libvis_wo_LDFLAGS = @VISUAL_LIBS@
+-libvis_wo_CFLAGS =  @VISUAL_CFLAGS@ $(AM_CFLAGS)
++libvis_wo_LDFLAGS = $(shared_ldflags) @VISUAL_LIBS@
++libvis_wo_CFLAGS =  $(shared_cflags) @VISUAL_CFLAGS@ $(AM_CFLAGS)
+ 
+ endif
+ 
+--- lives-0.9.8.3/lives-plugins/plugins/playback/video/Makefile.am.orig	2007-03-17 12:34:43.000000000 +0000
++++ lives-0.9.8.3/lives-plugins/plugins/playback/video/Makefile.am	2007-03-17 14:35:56.000000000 +0000
+@@ -10,17 +10,15 @@
+ endif
+ 
+ if HAVE_SDL
+-SDL_progs = SDL
+-SDL_SOURCE =  SDL.c
+-CFLAGS_SDL = @SDL_CFLAGS@
+-LDFLAGS_SDL = @SDL_LIBS@
++SDL_progs = SDLp
++SDLp_SOURCES =  SDL.c
++SDLp_CFLAGS = $(shared_cflags) @GTK_CFLAGS@  @SDL_CFLAGS@ -g -Wall
++SDLp_LDFLAGS = $(shared_ldflags) @GTK_LIBS@ @SDL_LIBS@
+ 
+ else
+ if FORCE_SDL
+-SDL_progs = SDL
+-SDL_SOURCE =  SDL.c
+-CFLAGS_SDL = -I $(SDL_PREFIX)
+-LDFLAGS_SDL = -lSDL
++SDL_progs = SDLp
++SDLp_SOURCES =  SDL.c
+ endif
+ endif
+ 
+@@ -38,8 +36,5 @@
+ videoplugins_PROGRAMS = $(SDL_progs) $(YUV4MPEG_progs) $(vjack_output_progs) $(gl_output_progs) $(gl_cube_progs)
+ 
+ yuv4mpeg_stream_SOURCE = yuv4mpeg_stream.c
+-yuv4mpeg_stream_CFLAGS = @GTK_CFLAGS@ @MJPEG_CFLAGS@ $(shared_cflags) -O3
+-yuv4mpeg_stream_LDFLAGS = $(shared_ldflags) @GTK_LIBS@ @MJPEG_LIBS@ -O3
+-
+-SDL_CFLAGS = $(shared_cflags) @GTK_CFLAGS@  $(CFLAGS_SDL) -g -O3 -Wall -c
+-SDL_LDFLAGS = $(shared_ldflags) @GTK_LIBS@ $(LDFLAGS_SDL) -O3
++yuv4mpeg_stream_CFLAGS = @GTK_CFLAGS@ @MJPEG_CFLAGS@ $(shared_cflags)
++yuv4mpeg_stream_LDFLAGS = $(shared_ldflags) @GTK_LIBS@ @MJPEG_LIBS@
