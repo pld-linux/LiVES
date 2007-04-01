@@ -1,21 +1,21 @@
-
 # TODO
+# - unfortunately it crashes in weed_plugin_info_init (alien_overlay.wo)
 # - some platform-independent left in %{_libdir}
-# - fix build with automake 1.10
 
 %define		_sname		lives
 
 Summary:	LiVES - the Linux Video Editing System
 Summary(pl):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
-Version:	0.9.6
+Version:	0.9.8.4
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}.tar.bz2
-# Source0-md5:	71bc3a29d0d37a8ca88370a3499741d4
+# Source0-md5:	585f7a8d8a3e2b71a886fc04de3a79a3
 Source1:	%{name}.desktop
 Patch0:		%{name}-FHS.patch
+Patch1:		%{name}-automake.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	SDL-devel
 BuildRequires:	autoconf >= 2.57
@@ -86,6 +86,7 @@ Motywy dla LiVES.
 %prep
 %setup -qn %{_sname}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 # wrrr
 sed -i -e 's,/share/,/%{_lib}/,' po/pxgettext po/make_rfx_builtin_list.pl
@@ -117,7 +118,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 mv $RPM_BUILD_ROOT%{_docdir}/%{_sname}-%{version} \
 	$RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
-mv -f $RPM_BUILD_ROOT%{_localedir}/{cz,cs}
+mv -f $RPM_BUILD_ROOT%{_localedir}/de{_DE,}
 mv -f $RPM_BUILD_ROOT%{_localedir}/nl{_NL,}
 
 %find_lang %{_sname}
@@ -127,7 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{_sname}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS CHANGELOG FEATURES GETTING.STARTED NEWS RFX OMC
+%doc AUTHORS BUGS ChangeLog FEATURES GETTING.STARTED NEWS RFX OMC
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/%{_sname}
 %{_datadir}/%{_sname}/icons
