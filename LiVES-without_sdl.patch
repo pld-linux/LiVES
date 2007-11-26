@@ -1,0 +1,25 @@
+diff -ruN lives-0.9.8.6/m4-orig/sdl.m4 lives-0.9.8.6/m4/sdl.m4
+--- lives-0.9.8.6/m4-orig/sdl.m4	1970-01-01 01:00:00.000000000 +0100
++++ lives-0.9.8.6/m4/sdl.m4	2007-11-26 10:46:25.662902217 +0100
+@@ -0,0 +1,4 @@
++AC_DEFUN([AM_PATH_SDL],
++[
++	echo "Hello, world"
++])
+--- lives-0.9.8.6/configure.in.orig	2007-11-26 11:37:13.197981634 +0100
++++ lives-0.9.8.6/configure.in	2007-11-26 11:38:41.184558730 +0100
+@@ -172,10 +172,13 @@
+ AC_SUBST(SDL_CFLAGS)
+ 
+ fi
+-else FORCE_SDL=true
++else
++if test "x$disable_sdl" != "xyes" ; then
++FORCE_SDL=true
+ SDL_PREFIX=${with-sdl-prefix}
+ AC_SUBST(SDL_PREFIX)
+ fi
++fi
+ 
+ AM_CONDITIONAL(HAVE_SDL,$HAVE_SDL)
+ AM_CONDITIONAL(FORCE_SDL,$FORCE_SDL)
