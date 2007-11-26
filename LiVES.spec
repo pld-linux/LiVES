@@ -3,6 +3,13 @@
 # - some platform-independent left in %{_libdir}
 # - LiVES req LiVES-plugins which req LiVES; it sucks
 
+# Conditional build:
+%bcond_without	sdl		# build without SDL plugin
+%bcond_without	mjpeg		# build without mjpegtools plugin
+%bcond_without	libvisual	# disable libvisual support
+%bcond_without	jack		# without JACKD support
+%bcond_without	dvgrab		# build without dv grabbing support
+
 %define		_sname		lives
 
 Summary:	LiVES - the Linux Video Editing System
@@ -17,16 +24,21 @@ Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}.tar.b
 Source1:	%{name}.desktop
 Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-automake.patch
+Patch2:		%{name}-without_sdl.patch
 URL:		http://www.xs4all.nl/~salsaman/lives/
-BuildRequires:	SDL-devel
+%{?with_sdl:BuildRequires:	SDL-devel}
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	gettext-devel >= 0.14.1
 BuildRequires:	gtk+2-devel >= 2.0.0
+%{?with_jack:BuildRequires:	jack-audio-connection-kit-devel}
+%{?with_dvgrab:BuildRequires:	libavc1394-devel}
+BuildRequires:	liboil-devel
+%{?with_dvgrab:BuildRequires:	libraw1394-devel}
 BuildRequires:	libtheora-devel
 BuildRequires:	libtool
-BuildRequires:	libvisual-devel
-BuildRequires:	mjpegtools-devel
+%{?with_libvisual:BuildRequires:	libvisual-devel}
+%{?with_mjpeg:BuildRequires:	mjpegtools-devel}
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-util-imake
@@ -89,6 +101,7 @@ Motywy dla LiVES.
 %setup -qn %{_sname}-%{version}
 %patch0 -p1
 %patch1 -p1
+%{!?with_sdl:%patch2 -p1}
 
 # wrrr
 sed -i -e 's,/share/,/%{_lib}/,' po/pxgettext po/make_rfx_builtin_list.pl
@@ -99,6 +112,8 @@ sed -i -e 's,/share/,/%{_lib}/,' po/pxgettext po/make_rfx_builtin_list.pl
 %{__automake}
 # hack: DATADIRNAME defined too late in configure
 %configure \
+	%{!?with_dvgrab:--disable-dvgrab} \
+	%{!?with_sdl:--disable-sdl} \
 	DATADIRNAME=share
 %{__make} \
 	CFLAGS="%{rpmcflags} -fPIC"
@@ -173,12 +188,44 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/RFXscripts/*.script
 %dir %{_datadir}/%{_sname}/plugins/effects/realtime
 %dir %{_datadir}/%{_sname}/plugins/effects/realtime/weed
-%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/*wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/alien_overlay.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/audio_volume.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/blurzoom.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/bump2d.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/ccorrect.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/colorkey.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/compositor.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/deinterlace.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/edge.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/fg_bg_removal.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/fireTV.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/gdk_fast_resize.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/haip.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/layout_blends.wo
+%{?with_libvisual:%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/libvis.wo}
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/lifeTV.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/mirrors.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/multi_blends.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/negate.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/noise.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/onedTV.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/plasma.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/posterise.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/rippleTV.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/rotozoom.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/simple_blend.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/slide_over.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/targeted_zoom.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/textfun.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/vertigo.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/videowall.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/warpTV.wo
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/xeffect.wo
 %dir %{_datadir}/%{_sname}/plugins/effects/rendered
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/rendered/*
 %dir %{_datadir}/%{_sname}/plugins/encoders
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/*
 %dir %{_datadir}/%{_sname}/plugins/playback
 %dir %{_datadir}/%{_sname}/plugins/playback/video
-%attr(755,root,root) %{_datadir}/%{_sname}/plugins/playback/video/SDLp
-%attr(755,root,root) %{_datadir}/%{_sname}/plugins/playback/video/yuv4mpeg_stream
+%{?with_sdl:%attr(755,root,root) %{_datadir}/%{_sname}/plugins/playback/video/SDLp}
+%{?with_mjpeg:%attr(755,root,root) %{_datadir}/%{_sname}/plugins/playback/video/yuv4mpeg_stream}
