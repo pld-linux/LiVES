@@ -1,7 +1,7 @@
 # TODO
 # - unfortunately it crashes in weed_plugin_info_init (alien_overlay.wo)
 # - some platform-independent left in %{_libdir}
-# - LiVES req LiVES-plugins which req LiVES; it sucks
+# - check -plugins-* descriptions
 
 # Conditional build:
 %bcond_without	sdl		# build without SDL plugin
@@ -42,15 +42,19 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-util-imake
-Requires:	%{name}-plugins = %{version}-%{release}
-Requires:	ImageMagick >= 5
 Requires:	ffmpeg
-Requires:	mplayer >= 0.90rc1
 Requires:	ogmtools
 Requires:	perl-base
 Requires:	python >= 1:2.3
+# required either mplayer or sox
 Requires:	sox
 Requires:	transcode
+Suggests:	ImageMagick >= 5
+Suggests:	mplayer >= 0.90rc1
+Suggests:	xmms
+Suggests:	cdda2wav
+Suggests:	%{name}-plugins-rendered = %{version}-%{release}
+Suggests:	%{name}-plugins-encoders = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # workaround for the next change
@@ -78,12 +82,77 @@ Summary:	Plugins for LiVES
 Summary(pl.UTF-8):	Wtyczki dla LiVES
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-plugins-encoders = %{version}-%{release}
+Requires:	%{name}-plugins-playback = %{version}-%{release}
+Requires:	%{name}-plugins-rendered = %{version}-%{release}
+Requires:	%{name}-plugins-RFXscripts = %{version}-%{release}
+Requires:	%{name}-plugins-weed = %{version}-%{release}
 
 %description plugins
 Plugins for LiVES.
 
 %description plugins -l pl.UTF-8
 Wtyczki (plugins) dla LiVES.
+
+%package plugins-encoders
+Summary:	Encoders plugins for LiVES
+Summary(pl.UTF-8):	Wtyczki kodujące dla LiVES
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}-%{release}
+
+%description plugins-encoders
+Encoders plugins for LiVES.
+
+%description plugins-encoders -l pl.UTF-8
+Wtyczki (plugins) kodujące dla LiVES.
+
+%package plugins-playback
+Summary:	Playback plugins for LiVES
+Summary(pl.UTF-8):	Wtyczki odtwarzające dla LiVES
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}-%{release}
+
+%description plugins-playback
+Playback plugins for LiVES.
+
+%description plugins-playback -l pl.UTF-8
+Wtyczki (plugins) odtwarzające dla LiVES.
+
+%package plugins-rendered
+Summary:	Rendered plugins for LiVES
+Summary(pl.UTF-8):	Wtyczki rendered dla LiVES
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}-%{release}
+
+%description plugins-rendered
+Rendered plugins for LiVES.
+
+%description plugins-rendered -l pl.UTF-8
+Wtyczki (plugins) rendered dla LiVES.
+
+%package plugins-RFXscripts
+Summary:	RFXscripts plugins for LiVES
+Summary(pl.UTF-8):	Wtyczki RFXscripts dla LiVES
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}-%{release}
+
+%description plugins-RFXscripts
+RFXscripts plugins for LiVES.
+
+%description plugins-RFXscripts -l pl.UTF-8
+Wtyczki (plugins) RFXscripts dla LiVES.
+
+%package plugins-weed
+Summary:	Weed plugins for LiVES
+Summary(pl.UTF-8):	Wtyczki weed dla LiVES
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}-%{release}
+
+%description plugins-weed
+Weed plugins for LiVES.
+
+%description plugins-weed -l pl.UTF-8
+Wtyczki (plugins) weed dla LiVES.
 
 %package themes
 Summary:	Themes for LiVES
@@ -153,6 +222,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/build-lives-rfx-plugin-multi
 %attr(755,root,root) %{_bindir}/dirac_encoder.py
 %attr(755,root,root) %{_bindir}/gif_encoder.py
+%attr(755,root,root) %{_bindir}/lives
 %attr(755,root,root) %{_bindir}/lives-exe
 %attr(755,root,root) %{_bindir}/midistart
 %attr(755,root,root) %{_bindir}/midistop
@@ -164,6 +234,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/smogrify
 %attr(755,root,root) %{_bindir}/theora_encoder.py
 %dir %{_datadir}/%{_sname}
+%dir %{_datadir}/%{_sname}/plugins
+%dir %{_datadir}/%{_sname}/plugins/effects
 %{_datadir}/%{_sname}/icons
 %{_datadir}/%{_sname}/default.keymap
 %{_desktopdir}/%{name}.desktop
@@ -180,12 +252,29 @@ rm -rf $RPM_BUILD_ROOT
 %{_themesdir}/sunburst
 %{_themesdir}/editor
 
-%files plugins
+%files plugins-encoders
 %defattr(644,root,root,755)
-%dir %{_datadir}/%{_sname}/plugins
-%dir %{_datadir}/%{_sname}/plugins/effects
+%dir %{_datadir}/%{_sname}/plugins/encoders
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/*
+
+%files plugins-playback
+%defattr(644,root,root,755)
+%dir %{_datadir}/%{_sname}/plugins/playback
+%dir %{_datadir}/%{_sname}/plugins/playback/video
+%{?with_sdl:%attr(755,root,root) %{_datadir}/%{_sname}/plugins/playback/video/SDLp}
+%{?with_mjpeg:%attr(755,root,root) %{_datadir}/%{_sname}/plugins/playback/video/yuv4mpeg_stream}
+
+%files plugins-rendered
+%defattr(644,root,root,755)
+%dir %{_datadir}/%{_sname}/plugins/effects/rendered
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/rendered/*
+
+%files plugins-RFXscripts
+%defattr(644,root,root,755)
 %dir %{_datadir}/%{_sname}/plugins/effects/RFXscripts
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/RFXscripts/*.script
+
+%files plugins-weed
 %dir %{_datadir}/%{_sname}/plugins/effects/realtime
 %dir %{_datadir}/%{_sname}/plugins/effects/realtime/weed
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/alien_overlay.wo
@@ -221,11 +310,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/videowall.wo
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/warpTV.wo
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/xeffect.wo
-%dir %{_datadir}/%{_sname}/plugins/effects/rendered
-%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/rendered/*
-%dir %{_datadir}/%{_sname}/plugins/encoders
-%attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/*
-%dir %{_datadir}/%{_sname}/plugins/playback
-%dir %{_datadir}/%{_sname}/plugins/playback/video
-%{?with_sdl:%attr(755,root,root) %{_datadir}/%{_sname}/plugins/playback/video/SDLp}
-%{?with_mjpeg:%attr(755,root,root) %{_datadir}/%{_sname}/plugins/playback/video/yuv4mpeg_stream}
