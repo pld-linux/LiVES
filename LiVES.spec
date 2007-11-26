@@ -152,4 +152,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files plugins
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_datadir}/%{_sname}/plugins
+%dir %{_datadir}/%{_sname}/plugins
+%dir %{_datadir}/%{_sname}/plugins/effects
+%dir %{_datadir}/%{_sname}/plugins/effects/RFXscripts
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/RFXscripts/*.script
+%dir %{_datadir}/%{_sname}/plugins/effects/realtime
+%dir %{_datadir}/%{_sname}/plugins/effects/realtime/weed
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/realtime/weed/*wo
+%dir %{_datadir}/%{_sname}/plugins/effects/rendered
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/effects/rendered/*
+%dir %{_datadir}/%{_sname}/plugins/encoders
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/*
+%dir %{_datadir}/%{_sname}/plugins/playback
+%dir %{_datadir}/%{_sname}/plugins/playback/video
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/playback/video/SDLp
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/playback/video/yuv4mpeg_stream
