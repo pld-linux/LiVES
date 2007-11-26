@@ -4,6 +4,8 @@
 # - lots platform-independent left in %{_libdir}
 # - python encoders installed in _bindir
 # - check -plugins-* descriptions
+# - build with OSC support (http://www.cnmat.berkeley.edu/OpenSoundControl/index.html)
+# - build with frei0r support (www.piksel.org/frei0r)
 
 # Conditional build:
 %bcond_without	sdl		# build without SDL plugin
@@ -18,7 +20,7 @@ Summary:	LiVES - the Linux Video Editing System
 Summary(pl.UTF-8):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
 Version:	0.9.8.6
-Release:	0.1
+Release:	0.2
 License:	GPL v3
 Group:		X11/Applications/Multimedia
 Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}.tar.bz2
@@ -52,6 +54,7 @@ Requires:	python >= 1:2.3
 Requires:	sox
 Requires:	transcode
 Suggests:	ImageMagick >= 5
+Suggests:	dbgrab
 Suggests:	mplayer >= 0.90rc1
 Suggests:	xmms
 Suggests:	cdda2wav
@@ -80,8 +83,8 @@ Zaprojektowany został tak, by być zarówno prostym w użyciu jak i mimo
 niewielkiego rozmiaru posiadać zaawansowane funkcje.
 
 %package plugins
-Summary:	Plugins for LiVES
-Summary(pl.UTF-8):	Wtyczki dla LiVES
+Summary:	Plugins for LiVES (metapackage)
+Summary(pl.UTF-8):	Wtyczki dla LiVES (metapakiet)
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-plugins-encoders = %{version}-%{release}
@@ -91,10 +94,10 @@ Requires:	%{name}-plugins-RFXscripts = %{version}-%{release}
 Requires:	%{name}-plugins-weed = %{version}-%{release}
 
 %description plugins
-Plugins for LiVES.
+Plugins for LiVES (metapackage).
 
 %description plugins -l pl.UTF-8
-Wtyczki (plugins) dla LiVES.
+Wtyczki (plugins) dla LiVES (metapakiet).
 
 %package plugins-encoders
 Summary:	Encoders plugins for LiVES
