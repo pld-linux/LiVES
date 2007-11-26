@@ -106,6 +106,7 @@ sed -i -e 's,/share/,/%{_lib}/,' po/pxgettext po/make_rfx_builtin_list.pl
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_desktopdir}
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 install -d $RPM_BUILD_ROOT%{_datadir}/lives/plugins/effects/rendered
 for i in lives-plugins/plugins/effects/RFXscripts/*.script ; do
 	./build-lives-rfx-plugin $i $RPM_BUILD_ROOT%{_datadir}/lives/plugins/effects/rendered
@@ -136,6 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{_sname}/icons
 %{_datadir}/%{_sname}/default.keymap
 %{_desktopdir}/%{name}.desktop
+%{_pixmapsdir}/%{_sname}.xpm
 %dir %{_themesdir}
 %{_themesdir}/default
 
