@@ -37,14 +37,9 @@
  endif
  endif
  
-@@ -38,8 +36,5 @@
- videoplugins_PROGRAMS = $(SDL_progs) $(YUV4MPEG_progs) $(vjack_output_progs) $(gl_output_progs) $(gl_cube_progs)
+@@ -38,5 +36,3 @@
+ yuv4mpeg_stream_CFLAGS = @GTK_CFLAGS@ @MJPEG_CFLAGS@ $(shared_cflags)
+ yuv4mpeg_stream_LDFLAGS = $(shared_ldflags) @GTK_LIBS@ @MJPEG_LIBS@
  
- yuv4mpeg_stream_SOURCE = yuv4mpeg_stream.c
--yuv4mpeg_stream_CFLAGS = @GTK_CFLAGS@ @MJPEG_CFLAGS@ $(shared_cflags) -O3
--yuv4mpeg_stream_LDFLAGS = $(shared_ldflags) @GTK_LIBS@ @MJPEG_LIBS@ -O3
--
--SDL_CFLAGS = $(shared_cflags) @GTK_CFLAGS@  $(CFLAGS_SDL) -g -O3 -Wall -c
--SDL_LDFLAGS = $(shared_ldflags) @GTK_LIBS@ $(LDFLAGS_SDL) -O3
-+yuv4mpeg_stream_CFLAGS = @GTK_CFLAGS@ @MJPEG_CFLAGS@ $(shared_cflags)
-+yuv4mpeg_stream_LDFLAGS = $(shared_ldflags) @GTK_LIBS@ @MJPEG_LIBS@
+-SDL_CFLAGS = $(shared_cflags) @GTK_CFLAGS@  $(CFLAGS_SDL)
+-SDL_LDFLAGS = $(shared_ldflags) @GTK_LIBS@ $(LDFLAGS_SDL)
