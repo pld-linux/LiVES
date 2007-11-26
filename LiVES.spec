@@ -54,12 +54,13 @@ Requires:	python >= 1:2.3
 Requires:	sox
 Requires:	transcode
 Suggests:	ImageMagick >= 5
+Suggests:	cdda2wav
 Suggests:	dbgrab
 Suggests:	mplayer >= 0.90rc1
 Suggests:	xmms
-Suggests:	cdda2wav
-Suggests:	%{name}-plugins-rendered = %{version}-%{release}
+Suggests:	xorg-app-xset
 Suggests:	%{name}-plugins-encoders = %{version}-%{release}
+Suggests:	%{name}-plugins-rendered = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # workaround for the next change
