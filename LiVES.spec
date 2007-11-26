@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
 Version:	0.9.8.6
 Release:	0.1
-License:	GPL v2
+License:	GPL v3
 Group:		X11/Applications/Multimedia
 Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}.tar.bz2
 # Source0-md5:	c73aed9b2da4fc74d51f9e92fae7439d
@@ -132,7 +132,22 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{_sname}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog FEATURES GETTING.STARTED NEWS RFX OMC
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/autolives.pl
+%attr(755,root,root) %{_bindir}/avi_encoder.py
+%attr(755,root,root) %{_bindir}/build-lives-rfx-plugin
+%attr(755,root,root) %{_bindir}/build-lives-rfx-plugin-multi
+%attr(755,root,root) %{_bindir}/dirac_encoder.py
+%attr(755,root,root) %{_bindir}/gif_encoder.py
+%attr(755,root,root) %{_bindir}/lives-exe
+%attr(755,root,root) %{_bindir}/midistart
+%attr(755,root,root) %{_bindir}/midistop
+%attr(755,root,root) %{_bindir}/mkv_encoder.py
+%attr(755,root,root) %{_bindir}/mng_encoder.py
+%attr(755,root,root) %{_bindir}/mpeg_encoder.py
+%attr(755,root,root) %{_bindir}/ogm_encoder.py
+%attr(755,root,root) %{_bindir}/sendOSC
+%attr(755,root,root) %{_bindir}/smogrify
+%attr(755,root,root) %{_bindir}/theora_encoder.py
 %dir %{_datadir}/%{_sname}
 %{_datadir}/%{_sname}/icons
 %{_datadir}/%{_sname}/default.keymap
