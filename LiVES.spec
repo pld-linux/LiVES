@@ -1,6 +1,8 @@
 # TODO
-# - unfortunately it crashes in weed_plugin_info_init (alien_overlay.wo)
-# - some platform-independent left in %{_libdir}
+# - weed plugins don't work - segfault in weed_plugin_info_init
+#   (looks like #1743701 #1645153)
+# - lots platform-independent left in %{_libdir}
+# - python encoders installed in _bindir
 # - check -plugins-* descriptions
 
 # Conditional build:
