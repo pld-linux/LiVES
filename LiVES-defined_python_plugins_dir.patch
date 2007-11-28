@@ -1,0 +1,28 @@
+--- lives-0.9.8.6/lives-plugins/plugins/encoders/multi_encoder.orig	2007-11-26 23:50:28.986148300 +0100
++++ lives-0.9.8.6/lives-plugins/plugins/encoders/multi_encoder	2007-11-27 02:31:35.511459257 +0100
+@@ -109,6 +109,7 @@
+ # 80 characters long. This should be fixed in a future version
+ # of MJPEGtools (> 1.6.2).
+ TEMPDIR = './metd'
++PYTHON_PLUGINS_DIR = '/usr/share/lives/plugins/python/'
+ 
+ def run(command):
+     """
+@@ -134,7 +135,7 @@
+             abs_command = command
+     else:
+         path = os.environ.get('PATH', '').split(os.pathsep)
+-        for dir in path:
++        for dir in path + [PYTHON_PLUGINS_DIR]:
+             abs_command = os.path.join(dir, command)
+             if os.path.isfile(abs_command) and \
+                os.access(abs_command, os.X_OK):
+@@ -439,7 +440,7 @@
+             quiet = '-q'
+             tonull = '2> /dev/null'
+ 
+-        encode_command = ' '.join([prog + '_encoder.py', '-o', \
++        encode_command = ' '.join([PYTHON_PLUGINS_DIR + prog + '_encoder.py', '-o', \
+                                    outfile, '-w', tempdir, '-a', arc, \
+                                    '-f', fpsc, quiet, '-t', \
+                                    type, '-s ./audiodump.wav', \
