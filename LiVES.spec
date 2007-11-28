@@ -1,13 +1,13 @@
 # TODO
 # - weed plugins don't work - segfault in weed_plugin_info_init
 #   (looks like #1743701 #1645153)
-# - lots platform-independent left in %{_libdir}
-# - python encoders installed in _bindir
 # - check -plugins-* descriptions
 # - build with OSC support (http://www.cnmat.berkeley.edu/OpenSoundControl/index.html)
 # - build with frei0r support (www.piksel.org/frei0r)
 # - create spec for http://www.flyn.org/projects/qtutils/index.html and package qtutils_encoder
 # - create spec for http://sswf.sourceforge.net and package sswf_encoder
+# - test RFXscrip plugins
+# - weed plugins are searched in %{_datadir}/%{%name}/...
 
 # Conditional build:
 %bcond_without	sdl		# build without SDL plugin
