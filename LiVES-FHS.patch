@@ -1,42 +1,32 @@
-diff -ur lives-0.9.6-o/po/make_rfx_builtin_list.pl lives-0.9.6/po/make_rfx_builtin_list.pl
---- lives-0.9.6-o/po/make_rfx_builtin_list.pl	2006-01-28 13:58:18.000000000 -0700
-+++ lives-0.9.6/po/make_rfx_builtin_list.pl	2006-08-16 13:10:21.000000000 -0600
-@@ -3,7 +3,7 @@
- # released under the GPL 2
- # see file COPYING or www.gnu.org for details
+--- lives-0.9.8.6/lives-plugins/weed-plugins/Makefile.am.orig	2007-11-26 18:46:29.268731554 +0100
++++ lives-0.9.8.6/lives-plugins/weed-plugins/Makefile.am	2007-11-26 18:46:41.766824891 +0100
+@@ -4,7 +4,7 @@
  
--$builtin_dir.="$ARGV[0]/$ARGV[1]/share/lives/plugins/effects/RFXscripts/";
-+$builtin_dir.="$ARGV[0]/$ARGV[1]/lib/lives/plugins/effects/RFXscripts/";
- print "    adding script files from $builtin_dir\n";
+ SUBDIRS = gdk
  
- open OUT,"> POTFILES_PLUGINS";
-diff -ur lives-0.9.6-o/po/pxgettext lives-0.9.6/po/pxgettext
---- lives-0.9.6-o/po/pxgettext	2006-01-28 13:58:19.000000000 -0700
-+++ lives-0.9.6/po/pxgettext	2006-08-16 13:10:21.000000000 -0600
-@@ -33,7 +33,7 @@
-     }
+-fxdir = $(datadir)/$(PACKAGE)/plugins/effects/realtime/weed
++fxdir = $(libdir)/$(PACKAGE)/plugins/effects/realtime/weed
  
-     $e = "msgid \"$plugin_name\"";
--    $fileposition = "#: $prefix/share/lives/plugins/effects/rendered/$basename:0\n";
-+    $fileposition = "#: $prefix/lib/lives/plugins/effects/rendered/$basename:0\n";
-     unless (&exists($e)) {
-       $e.="\nmsgstr \"\"\n";
-       push @{$entry{$e}}, $fileposition;              
-diff -ur lives-0.9.6-o/src/main.h lives-0.9.6/src/main.h
---- lives-0.9.6-o/src/main.h	2006-07-20 19:06:58.000000000 -0600
-+++ lives-0.9.6/src/main.h	2006-08-16 13:11:07.000000000 -0600
-@@ -81,10 +81,10 @@
+ if IS_DARWIN
+ shared_ldflags = -dynamiclib
+--- lives-0.9.8.6/lives-plugins/weed-plugins/gdk/Makefile.am.orig	2007-11-26 19:33:43.336376765 +0100
++++ lives-0.9.8.6/lives-plugins/weed-plugins/gdk/Makefile.am	2007-11-26 19:33:57.834165036 +0100
+@@ -2,7 +2,7 @@
  
- #define DOC_DIR "/share/doc/lives-"
+ %.wo: %.c
  
--#define THEME_DIR "/share/lives/themes/"
--#define PLUGIN_DIR "/share/lives/plugins/"
--#define ICON_DIR "/share/lives/icons/"
--#define DATA_DIR "/share/lives/"
-+#define THEME_DIR "/lib/lives/themes/"
-+#define PLUGIN_DIR "/lib/lives/plugins/"
-+#define ICON_DIR "/lib/lives/icons/"
-+#define DATA_DIR "/lib/lives/"
- #define LIVES_CONFIG_DIR ".lives-dir"
+-fxdir = $(datadir)/$(PACKAGE)/plugins/effects/realtime/weed
++fxdir = $(libdir)/$(PACKAGE)/plugins/effects/realtime/weed
  
- // insert methods
+ if IS_DARWIN
+ shared_ldflags = -dynamiclib
+--- lives-0.9.8.6/lives-plugins/plugins/playback/video/Makefile.am.orig	2007-11-26 20:03:46.061359765 +0100
++++ lives-0.9.8.6/lives-plugins/plugins/playback/video/Makefile.am	2007-11-26 20:03:59.059376838 +0100
+@@ -1,6 +1,6 @@
+ ## Process this with automake to create Makefile.in
+ 
+-videopluginsdir = $(datadir)/$(PACKAGE)/plugins/playback/video
++videopluginsdir = $(libdir)/$(PACKAGE)/plugins/playback/video
+ 
+ if IS_DARWIN
+ shared_ldflags = -dynamiclib -fno-common
