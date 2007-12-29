@@ -21,12 +21,12 @@
 Summary:	LiVES - the Linux Video Editing System
 Summary(pl.UTF-8):	LiVES - Linuksowy System Edycji Video
 Name:		LiVES
-Version:	0.9.8.6
-Release:	0.4
+Version:	0.9.8.7
+Release:	0.1
 License:	GPL v3
 Group:		X11/Applications/Multimedia
 Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}.tar.bz2
-# Source0-md5:	c73aed9b2da4fc74d51f9e92fae7439d
+# Source0-md5:	3814a56baac84a29a1b59267aa270be5
 Source1:	%{name}.desktop
 Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-automake.patch
@@ -282,8 +282,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/mencoder_encoder
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/mjpegtools_encoder
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/pdf_encoder
-#%attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/qtutils_encoder
-#%attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/sswf_encoder
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/qtutils_encoder
+%attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/sswf_encoder
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/transcode_encoder
  
 
