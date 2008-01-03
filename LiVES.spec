@@ -37,7 +37,7 @@ URL:		http://www.xs4all.nl/~salsaman/lives/
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	gettext-devel >= 0.14.1
-BuildRequires:	gtk+2-devel >= 2.0.0
+BuildRequires:	gtk+2-devel >= 1:2.0.0
 %{?with_jack:BuildRequires:	jack-audio-connection-kit-devel}
 %{?with_dvgrab:BuildRequires:	libavc1394-devel}
 BuildRequires:	liboil-devel
@@ -111,6 +111,7 @@ Requires:	mjpegtools
 Requires:	perl-base
 Requires:	transcode
 Requires:	vorbis-tools
+Obsoletes:	LiVES-plugins-encoders
 
 %description plugins-encoders-perl
 Perl encoders plugins for LiVES.
@@ -124,6 +125,7 @@ Summary(pl.UTF-8):	Pythonowe wtyczki kodujące dla LiVES
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}-%{release}
 Requires:	python
+Obsoletes:	LiVES-plugins-encoders
 
 %description plugins-encoders-python
 Python encoders plugins for LiVES.
@@ -285,7 +287,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/qtutils_encoder
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/sswf_encoder
 %attr(755,root,root) %{_datadir}/%{_sname}/plugins/encoders/transcode_encoder
- 
 
 %files plugins-encoders-python
 %defattr(644,root,root,755)
