@@ -32,7 +32,7 @@ Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-automake.patch
 Patch2:		%{name}-without_sdl.patch
 Patch3:		%{name}-defined_python_plugins_dir.patch
-URL:		http://www.xs4all.nl/~salsaman/lives/
+URL:		http://lives.sourceforge.net/
 %{?with_sdl:BuildRequires:	SDL-devel}
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake >= 1:1.7
