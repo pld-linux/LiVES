@@ -25,7 +25,7 @@ Version:	0.9.8.7
 Release:	0.1
 License:	GPL v3
 Group:		X11/Applications/Multimedia
-Source0:	http://www.xs4all.nl/%7Esalsaman/lives/current/%{name}-%{version}.tar.bz2
+Source0:	http://salsaman.home.xs4all.nl/lives/current/%{name}-%{version}.tar.bz2
 # Source0-md5:	3814a56baac84a29a1b59267aa270be5
 Source1:	%{name}.desktop
 Patch0:		%{name}-FHS.patch
