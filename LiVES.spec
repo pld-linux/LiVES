@@ -36,7 +36,7 @@ URL:		http://lives.sourceforge.net/
 %{?with_sdl:BuildRequires:	SDL-devel}
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake >= 1:1.7
-BuildRequires:	gettext-devel >= 0.14.1
+BuildRequires:	gettext-tools >= 0.14.1
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 %{?with_jack:BuildRequires:	jack-audio-connection-kit-devel}
 %{?with_dvgrab:BuildRequires:	libavc1394-devel}
