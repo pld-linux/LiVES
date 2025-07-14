@@ -196,10 +196,10 @@ Motywy dla LiVES.
 
 %prep
 %setup -qn %{_sname}-%{version}
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 %{!?with_sdl:%patch2 -p1}
-%patch3 -p1
+%patch -P3 -p1
 
 sed -i -e "#^PYTHON_PLUGINS_DIR#s#^.*#PYTHON_PLUGINS_DIR = %{python_plugins_dir}/#" \
 	lives-plugins/plugins/encoders/multi_encoder
